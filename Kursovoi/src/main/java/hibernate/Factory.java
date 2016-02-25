@@ -31,7 +31,7 @@ public class Factory {
 
     }
 
-    private ProtocolDao getProtocolDao(){
+    public ProtocolDao getProtocolDao(){
         protocolDao=new ProtocolDao();
         return protocolDao;
     }

@@ -34,21 +34,25 @@
 
         <%if("driver".equals(choiceTable)){ %>
             <form method="get" action="/add">
+
                   <p>Введите имя</p>
                   <input type="text" name="name_driver">
+                  <input type="hidden" name="id" value="1">
                   <p>Введите фамилию</p>
                   <input type="text" name="surname_driver">
                   <p>Введите номер водительского удостоверения</p>
                   <input type="text" name="vod_udost">
+
                   <input type="submit" value="Записать" >
             </form>
         <% }
         else if ("auto".equals(choiceTable)){%>
             <form method="get" action="/add">
+                <input type="hidden" name="id" value="2">
                 <p>Введите номер авто</p>
                 <input type="text" name="number_auto">
                 <p>Введите id водителя</p>
-                <input type="text" name="id_driver  ">
+                <input type="text" name="id_driver2">
                 <p>Введите марку</p>
                 <input type="text" name="marka">
                 <p>Введите номер свидельства о регистрации авто</p>
@@ -58,8 +62,9 @@
         <% }
         else if ("protocol".equals(choiceTable)){%>
             <form method="get" action="/add">
+                <input type="hidden" name="id" value="3">
                 <p>Введите номер авто</p>
-                <input type="text" name="number_auto">
+                <input type="text" name="number_auto2">
                 <p>Введите место нарушения</p>
                 <input type="text" name="mesto">
                 <p>Введите описание</p>
