@@ -21,16 +21,18 @@
 </head>
 <body>
     <h1>Штрафы ГИБДД</h1>
+    <hr>
     <aside>
 
-             <a href="add.jsp">Добавить</a>
+        <a href="add.jsp">Добавить</a>
         </br></br>
+        <a href="index.jsp">Назад</a>
     </aside>
-    <div class="table" display: inline-block>
-
+    <div class="tables">
+        <h3>Таблица "Водитель"</h3>
         <table>
             <tr>
-                <td>Id_водителя</td>
+                <td bgcolor="#f5f5dc">Id_водителя</td>
                 <td>Имя</td>
                 <td>Фамимлия</td>
                 <td>Номер водительского удостоверения</td>
@@ -40,19 +42,20 @@
                 for (Driver d:list){
             %>
             <tr>
-                <td style="font-size: 26px"><%=d.getId_driver()%></td>
+                <td style="font-size: 26px" bgcolor="#f5f5dc"><%=d.getId_driver()%></td>
                 <td style="font-size: 26px"><%=d.getName_driver()%></td>
                 <td style="font-size: 26px"><%=d.getSurname_driver()%></td>
                 <td style="font-size: 26px"><%=d.getVod_udost()%></td>
-                <td> Изменить</br><a href="/delete?type=1&id=<%=d.getId_driver()%>">Удалить</a></td>
+                <td><a href="edit.jsp?type=1&id=<%=d.getId_driver()%>"> Изменить</a></br><a href="/delete?type=1&id=<%=d.getId_driver()%>">Удалить</a></td>
             </tr>
             <%}%>
         </table>
         </br></br>
+        <h3>Таблица "Авто"</h3>
         <table>
             <tr>
-                <td>Номер</td>
-                <td>Id водителя</td>
+                <td bgcolor="#e0ffff">Номер</td>
+                <td bgcolor="#f5f5dc">Id водителя</td>
                 <td>Марка авто</td>
                 <td>Свидетельство о регистрации</td>
                 <td>Редактирование</td>
@@ -61,19 +64,20 @@
                 for (Auto a:list2){
             %>
             <tr>
-                <td style="font-size: 26px"><%=a.getNumber_auto()%></td>
-                <td style="font-size: 26px"><%=a.getId_driver().getId_driver()%></td>
+                <td style="font-size: 26px" bgcolor="#e0ffff"><%=a.getNumber_auto()%></td>
+                <td style="font-size: 26px" bgcolor="#f5f5dc"><%=a.getId_driver().getId_driver()%></td>
                 <td style="font-size: 26px"><%=a.getMarka()%></td>
                 <td style="font-size: 26px"><%=a.getSvidet_o_registr()%></td>
-                <td> Изменить</br><a href="/delete?type=2&id=<%=a.getNumber_auto()%>">Удалить</a></td>
+                <td> <a href="edit.jsp?type=2&id=<%=a.getNumber_auto()%>"> Изменить</a></br><a href="/delete?type=2&id=<%=a.getNumber_auto()%>">Удалить</a></td>
             </tr>
             <%}%>
         </table>
         </br></br>
+        <h3>Таблица "Штраф-протокол"</h3>
         <table>
             <tr>
-                <td>Id протокола</td>
-                <td>Номер авто</td>
+                <td bgcolor="#ffe4c4">Id протокола</td>
+                <td bgcolor="#e0ffff">Номер авто</td>
                 <td>Место нарушения</td>
                 <td>Oписание</td>
                 <td>Редактирование</td>
@@ -82,14 +86,15 @@
                 for (Protocol p:list3){
             %>
             <tr>
-                <td style="font-size: 26px"><%=p.getId_protocol()%></td>
-                <td style="font-size: 26px"><%=p.getNumber_auto().getNumber_auto()%></td>
+                <td style="font-size: 26px"  bgcolor="#ffe4c4"><%=p.getId_protocol()%></td>
+                <td style="font-size: 26px"  bgcolor="#e0ffff"><%=p.getNumber_auto().getNumber_auto()%></td>
                 <td style="font-size: 26px"><%=p.getMesto()%></td>
                 <td style="font-size: 26px"><%=p.getOpisanie()%></td>
-                <td> Изменить</br> <a href="/delete?type=3&id=<%=p.getId_protocol()%>">Удалить</a></td>
+                <td><a href="edit.jsp?type=3&id=<%=p.getId_protocol()%>"> Изменить</a></br> <a href="/delete?type=3&id=<%=p.getId_protocol()%>">Удалить</a></td>
             </tr>
             <%}%>
         </table>
+
     </div>
 
 

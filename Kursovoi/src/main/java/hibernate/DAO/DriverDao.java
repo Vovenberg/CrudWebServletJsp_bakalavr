@@ -18,6 +18,14 @@ public class DriverDao {
         s.getTransaction().commit();
         s.close();
     }
+    public void updateDriver(Driver a){
+        Session s= HibernateUtil.getSessionFactory().openSession();
+        s.beginTransaction();
+        s.update(a);
+        s.getTransaction().commit();
+        s.close();
+
+    }
     public List<Driver> getAllDrivers()
     {
         Session s=HibernateUtil.getSessionFactory().openSession();

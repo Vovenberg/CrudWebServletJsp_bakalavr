@@ -34,6 +34,15 @@ public class AutoDao {
         s.close();
         return a;
     }
+
+    public void updateAuto(Auto a){
+        Session s= HibernateUtil.getSessionFactory().openSession();
+        s.beginTransaction();
+        s.update(a);
+        s.getTransaction().commit();
+        s.close();
+
+    }
     public void deleteAuto(Auto a){
         Session s= HibernateUtil.getSessionFactory().openSession();
         s.beginTransaction();

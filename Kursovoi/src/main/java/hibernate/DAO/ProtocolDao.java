@@ -20,6 +20,15 @@ public class ProtocolDao {
         s.close();
 
     }
+
+    public void updateProtocol(Protocol a){
+        Session s= HibernateUtil.getSessionFactory().openSession();
+        s.beginTransaction();
+        s.update(a);
+        s.getTransaction().commit();
+        s.close();
+
+    }
     public List<Protocol> getAllProtocols()
     {
         Session s=HibernateUtil.getSessionFactory().openSession();
