@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 /**
@@ -19,9 +20,12 @@ import java.util.Random;
 public class Add extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //req.setCharacterEncoding("Cp1251");
+
         Integer s=Integer.parseInt( req.getParameter("id"));
         switch (s){
             case 1:{
+                try{
                 Driver dr = new Driver();
                 dr.setId_driver(new Random().nextInt(60));
                 dr.setName_driver(req.getParameter("name_driver"));
@@ -30,35 +34,55 @@ public class Add extends HttpServlet {
 
                 Factory.getInstanse().getDriverDao().addDriver(dr);
                 RequestDispatcher rq = req.getRequestDispatcher("showResult.jsp");
-                rq.forward(req, resp);
+                rq.forward(req, resp);}
+                catch (NumberFormatException ex){
+                    PrintWriter pw=resp.getWriter();
+                    pw.write("<h1>ERROR:  wrong entered data</h1></br>");
+                    pw.write("<h3>ERROR:  or no data in fields</h3>");
+                    // resp.setStatus(409);
+                }
             break;
             }
             case 2:{
-                Auto a=new Auto();
-                a.setNumber_auto(Integer.parseInt(req.getParameter("number_auto")));
-                    Integer id=Integer.parseInt(req.getParameter("id_driver2"));
-                    Driver d=Factory.getInstanse().getDriverDao().getDriverById(id);
-                a.setId_driver(d);
-                a.setMarka(req.getParameter("marka"));
-                a.setSvidet_o_registr(Integer.parseInt(req.getParameter("svidet_o_registr")));
+                try {
+                    Auto a = new Auto();
+                    a.setNumber_auto(Integer.parseInt(req.getParameter("number_auto")));
+                    Integer id = Integer.parseInt(req.getParameter("id_driver2"));
+                    Driver d = Factory.getInstanse().getDriverDao().getDriverById(id);
+                    a.setId_driver(d);
+                    a.setMarka(req.getParameter("marka"));
+                    a.setSvidet_o_registr(Integer.parseInt(req.getParameter("svidet_o_registr")));
 
-                Factory.getInstanse().getAutoDao().addAuto(a);
-                RequestDispatcher rq = req.getRequestDispatcher("showResult.jsp");
-                rq.forward(req, resp);
+                    Factory.getInstanse().getAutoDao().addAuto(a);
+                    RequestDispatcher rq = req.getRequestDispatcher("showResult.jsp");
+                    rq.forward(req, resp);
+                }catch (NumberFormatException ex){
+                    PrintWriter pw=resp.getWriter();
+                    pw.write("<h1>ERROR:  wrong entered data</h1></br>");
+                    pw.write("<h3>ERROR:  or no data in fields</h3>");
+                    // resp.setStatus(409);
+                }
             break;
             }
             case 3:{
-                Protocol p=new Protocol();
-                p.setId_protocol(new Random().nextInt(60));
-                    Integer id=Integer.parseInt(req.getParameter("number_auto2"));
-                    Auto a=Factory.getInstanse().getAutoDao().getAutoById(id);
-                p.setNumber_auto(a);
-                p.setMesto(req.getParameter("mesto"));
-                p.setOpisanie(req.getParameter("opisanie"));
+                try {
+                    Protocol p = new Protocol();
+                    p.setId_protocol(new Random().nextInt(60));
+                    Integer id = Integer.parseInt(req.getParameter("number_auto2"));
+                    Auto a = Factory.getInstanse().getAutoDao().getAutoById(id);
+                    p.setNumber_auto(a);
+                    p.setMesto(req.getParameter("mesto"));
+                    p.setOpisanie(req.getParameter("opisanie"));
 
-                Factory.getInstanse().getProtocolDao().addProtocol(p);
-                RequestDispatcher rq = req.getRequestDispatcher("showResult.jsp");
-                rq.forward(req, resp);
+                    Factory.getInstanse().getProtocolDao().addProtocol(p);
+                    RequestDispatcher rq = req.getRequestDispatcher("showResult.jsp");
+                    rq.forward(req, resp);
+                }catch (NumberFormatException ex){
+                    PrintWriter pw=resp.getWriter();
+                    pw.write("<h1>ERROR:  wrong entered data</h1></br>");
+                    pw.write("<h3>ERROR:  or no data in fields</h3>");
+                    // resp.setStatus(409);
+                }
             break;
             }
         }

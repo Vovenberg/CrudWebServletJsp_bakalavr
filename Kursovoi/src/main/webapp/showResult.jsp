@@ -15,18 +15,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>ШтрафыГИБДД</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style><%@include file="styles.css" %></style>
 </head>
 <body>
     <h1>Штрафы ГИБДД</h1>
+    <h4>by Кильдюшев В. гр. 6401<h4>
     <hr>
     <aside>
 
         <a href="add.jsp">Добавить</a>
         </br></br>
-        <a href="index.jsp">Назад</a>
+
     </aside>
     <div class="tables">
         <h3>Таблица "Водитель"</h3>
@@ -34,7 +35,7 @@
             <tr>
                 <td bgcolor="#f5f5dc">Id_водителя</td>
                 <td>Имя</td>
-                <td>Фамимлия</td>
+                <td>Фамилия</td>
                 <td>Номер водительского удостоверения</td>
                 <td>Редактирование</td>
             </tr>

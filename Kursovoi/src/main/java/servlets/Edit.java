@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 /**
@@ -23,23 +24,27 @@ public class Edit extends HttpServlet {
         Integer s=Integer.parseInt( req.getParameter("id"));
         switch (s){
             case 1:{
-                Driver dr = new Driver();
                 try {
-                    dr.setId_driver(Integer.parseInt(req.getParameter("id_driver")));
-                    dr.setName_driver(req.getParameter("name_driver"));
-                    dr.setSurname_driver(req.getParameter("surname_driver"));
-                    dr.setVod_udost(Integer.parseInt(req.getParameter("vod_udost")));
-                }catch (NullPointerException e){
-                    System.out.print("dfsd");
-                }
-
+                Driver dr = new Driver();
+                dr.setId_driver(Integer.parseInt(req.getParameter("id_driver")));
+                dr.setName_driver(req.getParameter("name_driver"));
+                dr.setSurname_driver(req.getParameter("surname_driver"));
+                dr.setVod_udost(Integer.parseInt(req.getParameter("vod_udost")));
 
                 Factory.getInstanse().getDriverDao().updateDriver(dr);
                 RequestDispatcher rq = req.getRequestDispatcher("showResult.jsp");
                 rq.forward(req, resp);
+
+                }catch (NumberFormatException ex){
+                    PrintWriter pw=resp.getWriter();
+                    pw.write("<h1>ERROR:  wrong entered data</h1></br>");
+                    pw.write("<h3>ERROR:  or no data in fields</h3>");
+                    // resp.setStatus(409);
+                }
                 break;
             }
             case 2:{
+                try {
                 Auto a=new Auto();
                 a.setNumber_auto(Integer.parseInt(req.getParameter("number_auto")));
                 Integer id=Integer.parseInt(req.getParameter("id_driver2"));
@@ -51,11 +56,19 @@ public class Edit extends HttpServlet {
                 Factory.getInstanse().getAutoDao().updateAuto(a);
                 RequestDispatcher rq = req.getRequestDispatcher("showResult.jsp");
                 rq.forward(req, resp);
+
+            }catch (NumberFormatException ex){
+                PrintWriter pw=resp.getWriter();
+                pw.write("<h1>ERROR:  wrong entered data</h1></br>");
+                pw.write("<h3>ERROR:  or no data in fields</h3>");
+                // resp.setStatus(409);
+            }
                 break;
             }
             case 3:{
+                try{
                 Protocol p=new Protocol();
-                p.setId_protocol(new Random().nextInt(60));
+                p.setId_protocol(Integer.parseInt(req.getParameter("idprotocol")));
                 Integer id=Integer.parseInt(req.getParameter("number_auto2"));
                 Auto a=Factory.getInstanse().getAutoDao().getAutoById(id);
                 p.setNumber_auto(a);
@@ -65,6 +78,13 @@ public class Edit extends HttpServlet {
                 Factory.getInstanse().getProtocolDao().updateProtocol(p);
                 RequestDispatcher rq = req.getRequestDispatcher("showResult.jsp");
                 rq.forward(req, resp);
+
+            }catch (NumberFormatException ex){
+                PrintWriter pw=resp.getWriter();
+                pw.write("<h1>ERROR:  wrong entered data</h1></br>");
+                pw.write("<h3>ERROR:  or no data in fields</h3>");
+                // resp.setStatus(409);
+            }
                 break;
             }
         }

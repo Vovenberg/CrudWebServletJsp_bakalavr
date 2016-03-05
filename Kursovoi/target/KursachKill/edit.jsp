@@ -59,6 +59,7 @@
             Protocol p=Factory.getInstanse().getProtocolDao().getProtocolById(id);%>
         <form method="get" action="/edit">
             <input type="hidden" name="id" value="3">
+            <input type="hidden" name="idprotocol" value="<%=p.getId_protocol()%>">
             <h3>Изменение данных штрафа</h3>
             <input type="hidden" name="number_auto2" value="<%=p.getNumber_auto().getNumber_auto()%>">
             <p>Введите место нарушения</p>

@@ -21,7 +21,7 @@
     <h1>Штрафы ГИБДД</h1>
     <%	String choiceTable = request.getParameter("ttype"); %>
     <div class="mainform">
-        <form action="add.jsp" method="get">
+        <form action="add.jsp" method="get" accept-charset="UTF-8">
            <select id="choice" name="ttype">
                <option selected disabled>Выберите таблицу</option>
                <option value="driver"> Водитель</option>
